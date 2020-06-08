@@ -1,0 +1,15 @@
+
+db.mekanlar.update(
+  {'ad':'Starbucks'},
+  {
+    $push:{
+      'yorumlar':{
+        '_id':ObjectId(),
+        'yorumYapan':'Asım Sinan Yüksel',
+        'puan':5,
+        'yorumMetni':'Kahveleri harika',
+        'tarih':new Date()
+      }
+    }
+}
+)

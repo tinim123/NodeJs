@@ -2,12 +2,22 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+var bodyParser = require('body-parser');
+var bodyParser = require('body-parser');
+require('./app_api/models/db');
 
+var logger = require('morgan');
+var routesApi = require('./app_api/routes/index');
 var indexRouter = require('./app_server/routes/index');
 var usersRouter = require('./app_server/routes/users');
 
+
 var app = express();
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use('/api', routesApi);
 
 // view engine setup
 app.set('views', path.join(__dirname,'app_server', 'views'));
